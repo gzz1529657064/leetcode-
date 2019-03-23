@@ -1,0 +1,17 @@
+给定长度为 2n 的数组, 你的任务是将这些数分成 n 对, 
+例如 (a1, b1), (a2, b2), ..., (an, bn) ，使得从1 到 n 的 min(ai, bi) 总和最大。
+
+class Solution(object):
+    def arrayPairSum(self, nums):
+        return sum(sorted(nums)[::2])
+排序与分片
+        
+
+class Solution(object):
+    def arrayPairSum(self, nums):
+        nums.sort()
+        res=0
+        for i in range(len(nums)):
+            if i %2 ==0:
+                res+=nums[i]
+        return(res)

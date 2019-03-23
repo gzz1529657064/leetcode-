@@ -1,0 +1,21 @@
+给定一个矩阵 A， 返回 A 的转置矩阵。
+
+矩阵的转置是指将矩阵的主对角线翻转，交换矩阵的行索引与列索引
+
+class Solution {
+public:
+    vector<vector<int>> transpose(vector<vector<int>>& A) {
+        int n = A[0].size();
+        int m = A.size();
+        // 定义n行m列的二维数组
+        vector<vector<int>> temp(n, vector<int>(m, 0));
+        for (int i = 0; i < m; ++i)
+        {
+            for(int j = 0; j < n; j++)
+            {
+                temp[j][i] = A[i][j];
+            }
+        }
+        return temp;
+    }
+};

@@ -1,0 +1,33 @@
+给定一个二进制矩阵 A，我们想先水平翻转图像，然后反转图像并返回结果。
+
+水平翻转图片就是将图片的每一行都进行翻转，即逆序。例如，水平翻转 [1, 1, 0] 的结果是 [0, 1, 1]。
+
+反转图片的意思是图片中的 0 全部被 1 替换， 1 全部被 0 替换。例如，反转 [0, 1, 1] 的结果是 [1, 0, 0]。
+
+# 1. 二维数组，翻转加倒序
+class Solution:
+    def flipAndInvertImage(self, A):
+        listnew = []
+        for l in A:
+            #l_re = l[::-1]
+            listnew.append([i^1 for i in l[::-1]])
+        return listnew
+倒序: l[::-1]
+翻转: 0 和 1 之间的翻转可以使用异或操作，这样0变成1，1变成0
+        
+解法二:       
+class Solution:
+    def flipAndInvertImage(self, A):
+        listnew = []
+        for i in range(len(A)):
+            a = A[i][::-1]
+            for j in range(len(a)):
+                # a[j]=0 if (a[j]==1) else 1
+                if a[j] == 1:
+                    a[j] = 0
+                else:
+                    a[j] = 1
+            listnew.append(a)
+        return listnew 
+解法二速度更快。
+      

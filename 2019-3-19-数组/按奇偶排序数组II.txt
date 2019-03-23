@@ -1,0 +1,54 @@
+给定一个非负整数数组 A， A 中一半整数是奇数，一半整数是偶数。
+
+对数组进行排序，以便当 A[i] 为奇数时，i 也是奇数；当 A[i] 为偶数时， i 也是偶数。
+
+你可以返回任何满足上述条件的数组作为答案。
+
+思路：奇数放在奇数位，偶数放在偶数位
+
+class Solution:
+    def sortArrayByParityII(self, A):
+        A_even = []
+        A_odd = []
+        for i in A:
+            if i % 2 == 0:
+                A_even.append(i)
+            else:
+                A_odd.append(i)
+        hh = []
+        for i, j in zip(A_odd, A_even):
+            hh.append(j)
+            hh.append(i)
+        return hh
+执行用时 : 168 ms, 在Sort Array By Parity II的Python3提交中击败了85.16% 的用户
+内存消耗 : 15.7 MB, 在Sort Array By Parity II的Python3提交中击败了0.93% 的用户
+
+主要是zip这个函数:将对象中对应的元素打包成一个个元组，然后返回由这些元组组成的列表
+>>>a = [1, 2, 3]
+>>>b = [4, 5, 6]
+>>>c = [4, 5, 6, 7, 8]
+>>>zipped = zip(a, b)        # 打包为元组的列表
+[(1, 4), (2, 5), (3, 6)]
+>>>zip(a, c)                 # 元素个数与最短的列表一致
+[(1, 4), (2, 5), (3, 6)]
+
+
+另一种解法:
+class Solution:
+    def sortArrayByParityII(self, A):
+        even = []
+        odd = []
+        for i in A:
+            if i & 1 == 0:
+                even.append(i)
+            else:
+                odd.append(i)
+        hh = []
+        for i, j in zip(odd, even):
+            hh.append(j)
+            hh.append(i)
+        return hh    
+和1相与，如果是奇数，返回1，
+		 如果是偶数，返回0
+
+        

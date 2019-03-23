@@ -1,0 +1,47 @@
+给定一个按非递减顺序排序的整数数组 A，返回每个数字的平方组成的新数组，要求也按非递减顺序排序。
+解法一:
+class Solution {
+public:
+    vector<int> sortedSquares(vector<int>& A) {
+        vector<int>B;
+        for(int i = 0; i != A.size(); ++i)
+        {
+            B.push_back(A[i]*A[i]);
+        }
+        sort(B.begin(),B.end());
+        return B;
+    }
+};
+
+分析：返回每个数的平方，按照非递减排序，可以理解为递增排序。也就是简单的排序sort
+用一个新的vector来存放A元素的平方。
+	考察向vector对象添加元素：使用push_back;
+	C++中的递增排序
+
+解法二:
+class Solution:
+    def sortedSquares(self, A: List[int]) -> List[int]:
+        re = list(map(lambda x : x ** 2, A))
+        re.sort()
+        return re
+执行用时 : 216 ms, 在Squares of a Sorted Array的Python3提交中击败了42.16% 的用户
+内存消耗 : 15 MB, 在Squares of a Sorted Array的Python3提交中击败了100.00% 的用户
+
+class Solution:
+    def sortedSquares(self, A: List[int]) -> List[int]:
+        re = list(map(lambda x : x * x, A))
+        re.sort()
+        return re
+        
+执行用时 : 192 ms, 在Squares of a Sorted Array的Python3提交中击败了74.59% 的用户
+内存消耗 : 15 MB, 在Squares of a Sorted Array的Python3提交中击败了100.00% 的用户
+
+表明：乘法比平方要快的多，能用乘法尽量别用平方
+	使用map(映射)
+	排序
+
+解法三:
+class Solution:
+    def sortedSquares(self, A: List[int]) -> List[int]:
+        return sorted(x * x for x in A)
+比解法二要慢一些

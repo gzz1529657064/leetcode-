@@ -1,0 +1,53 @@
+给定一个非负整数数组 A，返回一个由 A 的所有偶数元素组成的数组，后面跟 A 的所有奇数元素。
+
+你可以返回满足此条件的任何数组作为答案。
+
+我的答案：错误
+class Solution:
+    def sortArrayByParity(self, A):
+        B = []
+        for i in range(len(A)):
+            if A[i] %2 == 0:
+                B.append(A[i])
+                A.remove(A[i])
+        return B.extend(A)
+思路：把偶数弹出来，组成一个列表，插入（insert）到刚开始的位置：这样就实现了偶在前，奇在后
+
+正确答案：
+class Solution:
+    def sortArrayByParity(self, A):
+        for i in range(len(A)):
+            if A[i] %2 == 0:
+                temp = A.pop(i)
+                A.insert(0, temp)
+        return A  
+        
+class Solution:
+    def sortArrayByParity(self, A):
+        """
+        :type A: List[int]
+        :rtype: List[int]
+        """
+        i = 0
+        for j in range(len(A)):
+            if A[j] % 2 == 0:
+                A[i], A[j] = A[j], A[i]
+                i += 1
+        return A
+类似与双重指针。刚开始两个指针都指向初始位置，第一个指针向前，遇到偶数，和第二个指针进行数据交换
+第二个指针+1.知道第一个指针跑到了列表的尽头  
+
+解法三：
+class Solution:
+    def sortArrayByParity(self, A):
+        result = []
+        even = [i for i in A if i%2 == 0]
+        odd = [j for j in A if j%2 == 1]
+        result.extend(even)
+        result.extend(odd)
+        return result 
+将列表直接分成偶数和奇数列表
+直接在一个空的列表里扩张（extend），先扩偶，再扩奇
+        
+         
+        
